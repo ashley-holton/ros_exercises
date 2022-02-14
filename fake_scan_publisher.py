@@ -14,16 +14,18 @@ while not rospy.is_shutdown():
   rospy.loginfo(rand_num)
   scan = LaserScan()
   scan.header.stamp = rospy.Time.now()
-  scan.header.frame_id = "laser"
+  scan.header.frame_id = "base_link"
   scan.angle_min = (-2.0/3.0)*math.pi
   scan.angle_max = (2.0/3.0)*math.pi
   scan.angle_increment = (1.0/300.0)*math.pi
+  scan.scan_time = 1.0/20.0
   scan.range_min = 1.0
   scan.range_max = 10.0
   ranges = np.zeros((int((scan.angle_max-scan.angle_min)/scan.angle_increment + 1,)))
   for i in range(len(ranges)):
     ranges[i] = random.uniform(scan.range_min, scan.range_max)
   scan.ranges = ranges
+  rospy.loginfo(scan)
   pub.publish(scan)
   rate.sleep()
 
