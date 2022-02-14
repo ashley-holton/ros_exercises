@@ -20,7 +20,7 @@ while not rospy.is_shutdown():
   scan.angle_increment = (1.0/300.0)*math.pi
   scan.range_min = 1.0
   scan.range_max = 10.0
-  ranges = np.zeros((int((scan.angle_max-scan.angle_min)/scan.angle_increment,)))
+  ranges = np.zeros((int((scan.angle_max-scan.angle_min)/scan.angle_increment + 1,)))
   for i in range(len(ranges)):
     ranges[i] = random.uniform(scan.range_min, scan.range_max)
   scan.ranges = ranges
