@@ -6,8 +6,8 @@ import math
 pub = rospy.Publisher("random_float_log", Float32)
 
 def callback(data):
-  log = math.log(data)
-  pub.publish(data)
+  log = math.log(data.data)
+  pub.publish(Float32(log))
 
 def listener():
   rospy.init_node("simple_subscriber")
